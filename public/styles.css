@@ -1,0 +1,19 @@
+.cat-list,
+.item-list {
+  display: flex;
+  gap: 1rem;
+}
+.cat-item,
+.item {
+  border-radius: 10px;
+  background-color: rgb(178, 178, 233);
+  padding: 0.5rem 1rem;
+}
+.cat-item a,
+.item {
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.capitalize {
+  text-transform: capitalize;
+}

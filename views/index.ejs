@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title %></title>
-  </head>
+  <%- include("partials/head.ejs") %>
   <body>
-    <h1><%= title %></h1>
+    <h1 class="capitalize"><%= locals.title %></h1>
+    <div class="cat-list">
+      <% locals.categories.forEach(category=>{ %>
+      <button class="cat-item capitalize">
+        <a href="/cat/<%= category.id %>">
+          <%= category.name %>
+        </a>
+      </button>
+      <% }) %>
+    </div>
   </body>
 </html>
