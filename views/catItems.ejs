@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head.ejs") %>
+  <body>
+    <h1 class="capitalize"><%= locals.title %></h1>
+    <p class="cat-desc"><%= locals.catDesc %></p>
+    <p class="cat-numitems">Number of Items: <%= locals.numItems %></p>
+    <div class="item-list">
+    <% locals.items.forEach(item=>{ %>
+      <a href="/item/<%= item.id %>">
+        <div class="item-card">
+          <p class="item-name capitalize"><%= item.name %></p>
+          <p class="item-price">$<%= item.price %>/-</p>
+        </div>
+      </a>
+    <% }) %>
+    </div>
+  </body>
+</html>

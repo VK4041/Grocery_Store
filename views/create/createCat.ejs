@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../partials/head.ejs") %>
+  <body>
+    <h1><%= locals.title %></h1>
+    <form class="create-form" action="/cat/create" method="POST">
+      <label for="catName">Category Name</label>
+      <input type="text" required name="catName" />
+
+      <label for="catDesc">Category Description</label>
+      <input type="text" name="catDesc" />
+
+      <button type="submit">Create</button>
+    </form>
+  </body>
+</html>

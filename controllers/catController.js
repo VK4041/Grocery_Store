@@ -1,14 +1,24 @@
 const catQueries = require("../db/queries/categories");
-const itemQuries = require("../db/queries/items");
+const itemQueries = require("../db/queries/items");
+
 module.exports = {
   getCatItems: async (req, res) => {
     const catId = req.params.id;
     //Get items for that category
-    const catItems = await itemQuries.getCatItems(catId);
-    const catName = await catQueries.getCatName(catId);
-    res.render("items", {
-      title: catName,
-      items: catItems,
+    const catItems = await itemQueries.getCatItems(catId);
+    const { name, description } = await catQueries.getCatDetails(catId);
+    res.render("catItems", {
+      title: name.at(0).toUpperCase().concat(name.slice(1)),
+      items: catItems[0],
+      numItems: catItems[1],
+      catDesc: description,
     });
+  },
+  createCatForm: (req, res) => {
+    res.render("create/createCat", { title: "Create New Category" });
+  },
+  createCat: async (req, res) => {
+    await catQueries.createNewCat(req.body);
+    res.redirect("/");
   },
 };

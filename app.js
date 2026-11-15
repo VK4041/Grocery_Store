@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("node:path");
 const indexRouter = require("./routes/indexRouter");
 const catRouter = require("./routes/catRouter");
+const itemRouter = require("./routes/itemRouter");
 const assetsPath = path.join(__dirname, "public");
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.static(assetsPath));
 
 app.use("/", indexRouter);
 app.use("/cat", catRouter);
+app.use("/item", itemRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

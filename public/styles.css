@@ -4,16 +4,32 @@
   gap: 1rem;
 }
 .cat-item,
-.item {
+.item-card,
+.create {
   border-radius: 10px;
-  background-color: rgb(178, 178, 233);
+  background-color: rgb(133, 196, 190);
   padding: 0.5rem 1rem;
+  border: 2px solid brown;
 }
-.cat-item a,
-.item {
+.cat-item,
+.item-card {
   font-size: 1.5rem;
+}
+a {
   text-decoration: none;
+}
+.cat-item:hover,
+.item-card:hover {
+  background-color: aquamarine;
 }
 .capitalize {
   text-transform: capitalize;
+}
+.create {
+  margin-top: 1rem;
+  background-color: rgb(27, 122, 224);
+  color: white;
+}
+.create:hover {
+  background-color: rgb(114, 63, 63);
 }

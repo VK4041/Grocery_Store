@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head.ejs") %>
+  <body>
+    <h1 class="capitalize">Name: <%= locals.title %></h1>
+    <p class="item-desc">Description: <%= locals.desc %></p>
+    <p class="item-stock">Stock Level: <%= locals.stock %></p>
+    <p class="item-price">Price: $<%= locals.price %>/-</p>
+  </body>
+</html>
