@@ -39,8 +39,20 @@ async function getItem(itemId) {
   );
   return rows[0];
 }
+async function createNewItem(item) {
+  console.log(Object.values(item));
+  await pool.query(
+    `
+    INSERT INTO ITEMS (name, description, price, stock_qty, category_id)
+    VALUES
+  (($1),($2),($3),($4),($5))`,
+    Object.values(item),
+  );
+  console.log(`A new item has been added`);
+}
 module.exports = {
   getCatItems,
   getAllItems,
   getItem,
+  createNewItem,
 };

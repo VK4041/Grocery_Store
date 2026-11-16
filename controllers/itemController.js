@@ -15,4 +15,14 @@ module.exports = {
       id: item_id,
     });
   },
+  createItemForm: (req, res) => {
+    const catId = req.params.catId;
+    res.render("create/createItem", { title: "Add new item", catId });
+  },
+  createItem: async (req, res) => {
+    const catId = req.params.catId;
+    const item = { ...req.body, catId };
+    await itemQueries.createNewItem(item);
+    res.redirect(`/cat/${catId}`);
+  },
 };

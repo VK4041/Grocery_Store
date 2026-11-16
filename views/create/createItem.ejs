@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../partials/head.ejs") %>
+  <body>
+    <h1><%= locals.title %></h1>
+    <form
+      class="create-form"
+      action="/item/create/<%= locals.catId %>"
+      method="POST"
+    >
+      <label for="itemName">Item Name</label>
+      <input type="text" required name="itemName" />
+
+      <label for="itemDesc">Item Description</label>
+      <input type="text" name="itemDesc" />
+
+      <label for="itemPrice">Item Price</label>
+      <input type="number" name="itemPrice" step="any" required pattern=/^\d+(/.\d+)?$//>
+
+      <label for="itemStock">Item Stock</label>
+      <input type="number" name="itemStock" />
+
+      <button type="submit">Create</button>
+    </form>
+  </body>
+</html>

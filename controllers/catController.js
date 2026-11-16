@@ -12,6 +12,7 @@ module.exports = {
       items: catItems[0],
       numItems: catItems[1],
       catDesc: description,
+      catId,
     });
   },
   createCatForm: (req, res) => {
