@@ -29,10 +29,11 @@ async function getItem(itemId) {
     items.name as item_name,
     items.description as item_desc,
     items.price as item_price, 
-    items.stock_qty as item_stock
+    items.stock_qty as item_stock,
+    items.category_id as "catId"
     from categories 
     inner join items on 
-    categories.id = items.category_id
+    categories.id = items.category_id 
     where items.id = ($1)
     `,
     [itemId],

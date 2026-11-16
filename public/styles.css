@@ -33,3 +33,11 @@ a {
 .create:hover {
   background-color: rgb(114, 63, 63);
 }
+.home-link {
+  border: 1px solid blue;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+.home-link:hover {
+  background-color: yellow;
+}
