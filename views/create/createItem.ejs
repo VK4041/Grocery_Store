@@ -4,23 +4,33 @@
   <body>
     <h1><%= locals.title %></h1>
     <form
-      class="create-form"
-      action="/item/create/<%= locals.catId %>"
+      class="form"
+      action="/item/create/<%= locals.cat_id %>"
       method="POST"
     >
+    <div class="input-row">
       <label for="itemName">Item Name</label>
       <input type="text" required name="itemName" />
-
+    </div>
+    <div class="input-row">
       <label for="itemDesc">Item Description</label>
       <input type="text" name="itemDesc" />
-
+    </div>
+    <div class="input-row">
       <label for="itemPrice">Item Price</label>
       <input type="number" name="itemPrice" step="any" required pattern=/^\d+(/.\d+)?$//>
-
+    </div>
+    <div class="input-row">
       <label for="itemStock">Item Stock</label>
       <input type="number" name="itemStock" />
-
-      <button type="submit">Create</button>
+    </div>
+    <div class="input-row"> 
+      <button class="create-btn" type="submit">Create</button>
+    </div>
     </form>
+    <div class="nav-link">
+      <a class="home-link" href="/cat/<%= locals.cat_id %>">Back</a>
+      <a class="home-link" href="/">Home</a>
+    </div>
   </body>
 </html>

@@ -1,3 +1,7 @@
+html,
+body {
+  height: 100%;
+}
 .cat-list,
 .item-list {
   display: flex;
@@ -33,11 +37,24 @@ a {
 .create:hover {
   background-color: rgb(114, 63, 63);
 }
-.home-link {
+.nav-link {
+  margin-top: 2rem;
+}
+.home-link,
+.create-btn {
   border: 1px solid blue;
   padding: 0.5rem 1rem;
   border-radius: 5px;
 }
-.home-link:hover {
+.home-link:hover,
+.create-btn:hover {
   background-color: yellow;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.input-row {
+  justify-content: end;
 }

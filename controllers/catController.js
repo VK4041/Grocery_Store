@@ -3,16 +3,16 @@ const itemQueries = require("../db/queries/items");
 
 module.exports = {
   getCatItems: async (req, res) => {
-    const catId = req.params.id;
+    const cat_id = req.params.id;
     //Get items for that category
-    const catItems = await itemQueries.getCatItems(catId);
-    const { name, description } = await catQueries.getCatDetails(catId);
+    const catItems = await itemQueries.getCatItems(cat_id);
+    const { name, description } = await catQueries.getCatDetails(cat_id);
     res.render("catItems", {
       title: name.at(0).toUpperCase().concat(name.slice(1)),
       items: catItems[0],
       numItems: catItems[1],
       catDesc: description,
-      catId,
+      cat_id,
     });
   },
   createCatForm: (req, res) => {

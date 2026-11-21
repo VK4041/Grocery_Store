@@ -4,7 +4,16 @@ async function getAllCategories() {
   const { rows } = await pool.query("select * from categories");
   return rows;
 }
-
+async function getCatIdByName(catName) {
+  const result = await pool.query(
+    `
+    SELECT id FROM categories
+    where name = ($1)
+    `,
+    [catName],
+  );
+  return result.rows[0].id;
+}
 async function getCatDetails(catId) {
   const result = await pool.query(
     `select name, description from categories
@@ -29,4 +38,5 @@ module.exports = {
   getAllCategories,
   getCatDetails,
   createNewCat,
+  getCatIdByName,
 };

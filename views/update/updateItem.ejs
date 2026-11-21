@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../partials/head.ejs") %>
+  <body>
+    <h1><%= title %></h1>
+    <form class="form" action="/item/update/<%= item.item_id %>" method="POST">
+      <div class="input-row">
+        <label for="itemName">Item Name</label>
+        <input type="text" required name="itemName" value="<%= item.item_name %>"/>
+      </div>
+      <div class="input-row">
+        <label for="itemDesc">Item Description</label>
+        <input type="text" name="itemDesc" value="<%= item.item_desc %>"/>
+      </div>
+      <div class="input-row">
+        <label for="itemPrice">Item Price</label>
+        <input type="number" name="itemPrice" step="any" required pattern=/^\d+(/.\d+)?$/ value="<%= item.item_price %>"/>
+      </div>
+      <div class="input-row">
+        <label for="itemStock">Item Stock</label>
+        <input type="number" name="itemStock" value="<%= item.item_stock %>"/>
+      </div>
+      <div class="input-row">
+          <label for="itemCatName">Select Category:</label>
+          <select name="itemCatName" id="itemCatName">
+              <option value="<%= item.cat_name %>" selected="true"><%= item.cat_name %></option>
+              <% cats.forEach(cat=>{
+                      if(cat.id !== item.cat_id){ %>
+                          <option value="<%= cat.name %>"><%= cat.name %></option>
+                      <% }}) %>
+          </select>
+      </div>
+      <div class="input-row"> 
+        <button class="create-btn" type="submit">Update</button>
+      </div>
+      <input type="hidden" name="itemId" value="<%= item.item_id %>">
+    </form>
+    <div class="nav-link">
+      <a class="home-link" href="/">Home</a>
+    </div>
+  </body>
+</html>

@@ -6,7 +6,12 @@
     <p class="item-desc">Description: <%= locals.desc %></p>
     <p class="item-stock">Stock Level: <%= locals.stock %></p>
     <p class="item-price">Price: $<%= locals.price %>/-</p>
-    <a class="home-link" href="/cat/<%= locals.catId %>">Back</a>
-    <a class="home-link" href="/">Home</a>
+    <form action="/item/update/<%= locals.itemId%>" method="GET">
+      <button class="create">Update Item</button>
+    </form>
+    <div class="nav-link">
+      <a class="home-link" href="/cat/<%= locals.cat_id %>">Back</a>
+      <a class="home-link" href="/">Home</a>
+    </div>
   </body>
 </html>

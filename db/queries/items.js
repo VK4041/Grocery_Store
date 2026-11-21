@@ -14,15 +14,6 @@ async function getCatItems(catId) {
   );
   return [items.rows, numItems.rows[0].num_items];
 }
-async function getAllItems() {
-  const { rows } = await pool.query(
-    `select * from categories 
-    inner join items on 
-    categories.id = items.category_id`,
-    [catId],
-  );
-  return rows;
-}
 async function getItem(itemId) {
   const { rows } = await pool.query(
     `select items.id as item_id, 
@@ -30,7 +21,8 @@ async function getItem(itemId) {
     items.description as item_desc,
     items.price as item_price, 
     items.stock_qty as item_stock,
-    items.category_id as "catId"
+    items.category_id as "cat_id",
+    categories.name as "cat_name"
     from categories 
     inner join items on 
     categories.id = items.category_id 
@@ -41,7 +33,6 @@ async function getItem(itemId) {
   return rows[0];
 }
 async function createNewItem(item) {
-  console.log(Object.values(item));
   await pool.query(
     `
     INSERT INTO ITEMS (name, description, price, stock_qty, category_id)
@@ -51,9 +42,34 @@ async function createNewItem(item) {
   );
   console.log(`A new item has been added`);
 }
+async function updateItem(item) {
+  console.log(item);
+  const { rows } = await pool.query(
+    `
+    UPDATE ITEMS
+    SET 
+    name = ($2),
+    description = ($3),
+    price = ($4),
+    stock_qty = ($5),
+    category_id = ($6) 
+    WHERE
+    id = ($1)
+    `,
+    [
+      item.itemId,
+      item.itemName,
+      item.itemDesc,
+      item.itemPrice,
+      item.itemStock,
+      item.itemCatId,
+    ],
+  );
+  console.log(`Item "${item.itemName}" was updated`);
+}
 module.exports = {
   getCatItems,
-  getAllItems,
   getItem,
   createNewItem,
+  updateItem,
 };
