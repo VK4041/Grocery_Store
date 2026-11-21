@@ -6,6 +6,7 @@ body {
 .item-list {
   display: flex;
   gap: 1rem;
+  margin: 1rem 0;
 }
 .cat-item,
 .item-card,
@@ -38,7 +39,7 @@ a {
   background-color: rgb(114, 63, 63);
 }
 .nav-link {
-  margin-top: 2rem;
+  margin: 2rem 0;
 }
 .home-link,
 .create-btn {

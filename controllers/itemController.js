@@ -35,6 +35,6 @@ module.exports = {
     const itemCatId = await catQueries.getCatIdByName(req.body.itemCatName);
     const item = Object.assign({}, { itemCatId }, { ...req.body });
     await itemQueries.updateItem(item);
-    res.redirect("/");
+    res.redirect(`/item/${item.itemId}`);
   },
 };

@@ -33,10 +33,23 @@ async function createNewCat(cat) {
   );
   console.log("New category has been created");
 }
-
+async function updateCat(cat) {
+    await pool.query(
+    `
+    UPDATE categories
+    SET
+    name = $1,
+    description = $2
+    WHERE 
+    id = $3    
+    `,
+    [cat.catName, cat.catDesc, cat.cat_id],
+  );
+}
 module.exports = {
   getAllCategories,
   getCatDetails,
   createNewCat,
   getCatIdByName,
+  updateCat,
 };

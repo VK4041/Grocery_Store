@@ -5,6 +5,9 @@
     <h1 class="capitalize"><%= locals.title %></h1>
     <p class="cat-desc"><%= locals.catDesc %></p>
     <p class="cat-numitems">Number of Items: <%= locals.numItems %></p>
+    <form action="/cat/update/<%= locals.cat_id %>" method="GET">
+      <button class="create">Update Category</button>
+    </form>
     <div class="item-list">
     <% locals.items.forEach(item=>{ %>
       <a href="/item/<%= item.id %>">

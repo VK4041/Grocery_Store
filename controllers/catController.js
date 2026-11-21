@@ -22,4 +22,20 @@ module.exports = {
     await catQueries.createNewCat(req.body);
     res.redirect("/");
   },
+  updateCatForm: async (req, res) => {
+    const cat_id = req.params.cat_id;
+    const { name, description } = await catQueries.getCatDetails(cat_id);
+    res.render("update/updateCat", {
+      title: "Update Category",
+      cat_id,
+      name,
+      description,
+    });
+  },
+  updateCat: async (req, res) => {
+    const cat = req.body;
+    await catQueries.updateCat(req.body);
+    console.log(`Category "${cat.catName}" was updated`);
+    res.redirect(`/cat/${cat.cat_id}`);
+  },
 };
