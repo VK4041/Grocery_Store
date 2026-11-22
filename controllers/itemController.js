@@ -1,5 +1,6 @@
 const catQueries = require("../db/queries/categories");
 const itemQueries = require("../db/queries/items");
+const { emptyToNull } = require("./helper");
 
 module.exports = {
   getItem: async (req, res) => {
@@ -23,6 +24,7 @@ module.exports = {
   createItem: async (req, res) => {
     const cat_id = req.params.cat_id;
     const item = { ...req.body, cat_id };
+    emptyToNull(item);
     await itemQueries.createNewItem(item);
     res.redirect(`/cat/${cat_id}`);
   },
@@ -32,8 +34,13 @@ module.exports = {
     res.render("update/updateItem", { title: "Update Item", cats, item });
   },
   updateItem: async (req, res) => {
-    const itemCatId = await catQueries.getCatIdByName(req.body.itemCatName);
-    const item = Object.assign({}, { itemCatId }, { ...req.body });
+    const itemId = req.params.itemId;
+    emptyToNull(req.body);
+    const itemCatId =
+      req.body.itemCatName === "Uncategorized"
+        ? null
+        : await catQueries.getCatIdByName(req.body.itemCatName);
+    const item = Object.assign({}, { itemCatId, itemId }, { ...req.body });
     await itemQueries.updateItem(item);
     res.redirect(`/item/${item.itemId}`);
   },

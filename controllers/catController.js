@@ -1,10 +1,10 @@
 const catQueries = require("../db/queries/categories");
 const itemQueries = require("../db/queries/items");
+const { emptyToNull } = require("./helper");
 
 module.exports = {
   getUnCatItems: async (req, res) => {
     const [items, numItems] = await itemQueries.getAllUncatItems();
-    console.log(items, numItems);
     res.render("catItems", {
       title: "Uncategorized Items",
       type: "uncategorized",
@@ -30,7 +30,9 @@ module.exports = {
     res.render("create/createCat", { title: "Create New Category" });
   },
   createCat: async (req, res) => {
-    await catQueries.createNewCat(req.body);
+    const data = req.body;
+    emptyToNull(data);
+    await catQueries.createNewCat(data);
     res.redirect("/");
   },
   updateCatForm: async (req, res) => {
@@ -45,6 +47,7 @@ module.exports = {
   },
   updateCat: async (req, res) => {
     const cat = req.body;
+    emptyToNull(cat);
     await catQueries.updateCat(req.body);
     console.log(`Category "${cat.catName}" was updated`);
     res.redirect(`/cat/${cat.cat_id}`);

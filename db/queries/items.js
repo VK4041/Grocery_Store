@@ -34,7 +34,7 @@ async function createNewItem(item) {
   (($1),($2),($3),($4),($5))`,
     Object.values(item),
   );
-  console.log(`A new item has been added`);
+  console.log(`New item '${item.itemName}' has been added`);
 }
 async function updateItem(item) {
   const { rows } = await pool.query(
