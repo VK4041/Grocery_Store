@@ -7,7 +7,10 @@
     <p class="item-stock">Stock Level: <%= locals.stock %></p>
     <p class="item-price">Price: $<%= locals.price %>/-</p>
     <form action="/item/update/<%= locals.itemId%>" method="GET">
-      <button class="create">Update Item</button>
+      <button class="button">Update</button>
+    </form>
+    <form action="/item/delete/<%= locals.itemId %>" method="GET">
+      <button class="button delete-btn">Delete</button>
     </form>
     <div class="nav-link">
       <a class="home-link" href="/cat/<%= locals.cat_id %>">Back</a>

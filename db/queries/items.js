@@ -1,18 +1,12 @@
 const pool = require("../pool");
 
 async function getCatItems(catId) {
-  const items = await pool.query(
+  const { rows, rowCount } = await pool.query(
     `select * from items 
     where category_id = ($1)`,
     [catId],
   );
-  const numItems = await pool.query(
-    `select count(*) as "num_items" from items 
-    where category_id = ($1)
-    `,
-    [catId],
-  );
-  return [items.rows, numItems.rows[0].num_items];
+  return [rows, rowCount];
 }
 async function getItem(itemId) {
   const { rows } = await pool.query(
@@ -23,8 +17,8 @@ async function getItem(itemId) {
     items.stock_qty as item_stock,
     items.category_id as "cat_id",
     categories.name as "cat_name"
-    from categories 
-    inner join items on 
+    from items 
+    left join categories on 
     categories.id = items.category_id 
     where items.id = ($1)
     `,
@@ -43,7 +37,6 @@ async function createNewItem(item) {
   console.log(`A new item has been added`);
 }
 async function updateItem(item) {
-  console.log(item);
   const { rows } = await pool.query(
     `
     UPDATE ITEMS
@@ -67,9 +60,29 @@ async function updateItem(item) {
   );
   console.log(`Item "${item.itemName}" was updated`);
 }
+async function deleteItem(deleteId) {
+  await pool.query(
+    `
+    DELETE FROM ITEMS
+    WHERE
+    id = $1
+    `,
+    [deleteId],
+  );
+}
+async function getAllUncatItems() {
+  const { rows, rowCount } = await pool.query(`
+    SELECT * FROM ITEMS
+    WHERE
+    category_id IS NULL
+    `);
+  return [rows, rowCount];
+}
 module.exports = {
   getCatItems,
   getItem,
   createNewItem,
   updateItem,
+  deleteItem,
+  getAllUncatItems,
 };

@@ -34,7 +34,7 @@ async function createNewCat(cat) {
   console.log("New category has been created");
 }
 async function updateCat(cat) {
-    await pool.query(
+  await pool.query(
     `
     UPDATE categories
     SET
@@ -46,10 +46,21 @@ async function updateCat(cat) {
     [cat.catName, cat.catDesc, cat.cat_id],
   );
 }
+async function deleteCat(cat_id) {
+  await pool.query(
+    `
+    DELETE FROM categories
+    WHERE
+    id = $1
+    `,
+    [cat_id],
+  );
+}
 module.exports = {
   getAllCategories,
   getCatDetails,
   createNewCat,
   getCatIdByName,
   updateCat,
+  deleteCat,
 };

@@ -37,4 +37,15 @@ module.exports = {
     await itemQueries.updateItem(item);
     res.redirect(`/item/${item.itemId}`);
   },
+  confirmDelete: (req, res) => {
+    const itemId = req.params.itemId;
+    res.render("delete/confirmDelete", { type: "item", id: itemId });
+  },
+  deleteItem: async (req, res) => {
+    const itemId = req.params.itemId;
+    const { item_name, cat_id } = await itemQueries.getItem(itemId);
+    await itemQueries.deleteItem(itemId);
+    console.log(`Item "${item_name}" was deleted`);
+    res.redirect(`/cat/${cat_id}`);
+  },
 };

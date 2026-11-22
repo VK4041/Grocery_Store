@@ -3,11 +3,18 @@
   <%- include("partials/head.ejs") %>
   <body>
     <h1 class="capitalize"><%= locals.title %></h1>
-    <p class="cat-desc"><%= locals.catDesc %></p>
-    <p class="cat-numitems">Number of Items: <%= locals.numItems %></p>
-    <form action="/cat/update/<%= locals.cat_id %>" method="GET">
-      <button class="create">Update Category</button>
-    </form>
+    <% if( type === 'categorized'){ %> 
+      <p class="cat-desc"><%= locals.catDesc %></p>
+    <% } %>
+      <p class="cat-numitems">Number of Items: <%= locals.numItems %></p>
+    <% if( type === 'categorized'){ %>
+      <form action="/cat/update/<%= locals.cat_id %>" method="GET">
+        <button class="button">Update Category</button>
+      </form>
+      <form action="/cat/delete/<%= locals.cat_id %>" method="GET">
+        <button class="button delete-btn">Delete</button>
+      </form>
+    <% } %>
     <div class="item-list">
     <% locals.items.forEach(item=>{ %>
       <a href="/item/<%= item.id %>">
@@ -18,9 +25,11 @@
       </a>
     <% }) %>
     </div>
-    <form action="/item/create/<%= locals.cat_id %>" method="GET">
-      <button class="create">Add New Item</button>
-    </form>
+    <% if( type === 'categorized'){ %> 
+      <form action="/item/create/<%= locals.cat_id %>" method="GET">
+        <button class="button">Add New Item</button>
+      </form>
+    <% } %>
     <div class="nav-link">
       <a class="home-link" href="/">Home</a>
     </div>

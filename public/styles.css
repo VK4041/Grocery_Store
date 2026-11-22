@@ -10,7 +10,7 @@ body {
 }
 .cat-item,
 .item-card,
-.create {
+.button {
   border-radius: 10px;
   background-color: rgb(133, 196, 190);
   padding: 0.5rem 1rem;
@@ -30,26 +30,34 @@ a {
 .capitalize {
   text-transform: capitalize;
 }
-.create {
+.button {
   margin-top: 1rem;
   background-color: rgb(27, 122, 224);
   color: white;
 }
-.create:hover {
+.button:hover {
   background-color: rgb(114, 63, 63);
 }
 .nav-link {
   margin: 2rem 0;
 }
 .home-link,
-.create-btn {
+.submit-btn {
   border: 1px solid blue;
   padding: 0.5rem 1rem;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 .home-link:hover,
-.create-btn:hover {
-  background-color: yellow;
+.submit-btn:hover {
+  background-color: rgb(96, 96, 77);
+  color: white;
+}
+.delete-btn {
+  background-color: rgb(177, 112, 112);
+}
+.delete-btn:hover {
+  background-color: red;
+  color: white;
 }
 .form {
   display: flex;

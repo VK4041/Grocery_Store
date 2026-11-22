@@ -23,7 +23,7 @@
       <div class="input-row">
           <label for="itemCatName">Select Category:</label>
           <select name="itemCatName" id="itemCatName">
-              <option value="<%= item.cat_name %>" selected="true"><%= item.cat_name %></option>
+              <option value="<%= item.cat_name?:item.cat_name:'Uncategorized' %>" selected="true"><%= item.cat_name?:item.cat_name:'Uncategorized' %></option>
               <% cats.forEach(cat=>{
                       if(cat.id !== item.cat_id){ %>
                           <option value="<%= cat.name %>"><%= cat.name %></option>
@@ -31,7 +31,7 @@
           </select>
       </div>
       <div class="input-row"> 
-        <button class="create-btn" type="submit">Update</button>
+        <button class="button submit-btn" type="submit">Update</button>
       </div>
       <input type="hidden" name="itemId" value="<%= item.item_id %>">
     </form>
